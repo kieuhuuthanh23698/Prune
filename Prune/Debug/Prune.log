@@ -1,0 +1,9 @@
+﻿  Prune.cpp
+c:\users\sai.prg-training\documents\kieu huu thanh\prune\prune\prune.cpp(56): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\sai.prg-training\documents\kieu huu thanh\prune\prune\prune.cpp(59): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\sai.prg-training\documents\kieu huu thanh\prune\prune\prune.cpp(67): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\sai.prg-training\documents\kieu huu thanh\prune\prune\prune.cpp(69): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\sai.prg-training\documents\kieu huu thanh\prune\prune\prune.cpp(90): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\sai.prg-training\documents\kieu huu thanh\prune\prune\prune.cpp(139): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Prune.vcxproj -> C:\Users\sai.prg-training\Documents\Kieu Huu Thanh\Prune\Debug\Prune.exe
+  Prune.vcxproj -> C:\Users\sai.prg-training\Documents\Kieu Huu Thanh\Prune\Debug\Prune.pdb (Full PDB)
