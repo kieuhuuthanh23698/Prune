@@ -1,6 +1,8 @@
 ﻿// Prune.cpp : Defines the entry point for the console application.
 //
 #include <cstdlib>
+#define _POSIX_C_SOURCE 199309L
+#include <time.h>
 #include "stdafx.h"
 #include <iostream>
 #include "SFML\Graphics.hpp"
@@ -11,10 +13,20 @@ using namespace std;
 #define WINDOWS_W	900
 #define WINDOWS_H	600
 #define FPS_LIMIT	60
+#define TEXTURE_TREE "resource/tree.png"
 
 struct CanhCay
 {
 	float x, y;
+	Texture texTree;
+	Sprite sprTree;
+
+	CanhCay()
+	{
+		texTree.loadFromFile(TEXTURE_TREE);
+		sprTree.setTexture(texTree);
+		sprTree.setPosition(100,100);
+	}
 };
 
 struct NodeTree
@@ -33,6 +45,7 @@ void render(NodeTree *root, sf::RenderWindow &window)
 		sf::Vertex(sf::Vector2f(root->nodeLeft->canhCay.x, root->nodeLeft->canhCay.y))
 	};
 	window.draw(line, 2, sf::Lines);
+	window.draw(root->canhCay.sprTree);
 	if (root->nodeRight != NULL)
 	{
 		sf::Vertex line[] =
@@ -113,11 +126,21 @@ int main()
 	Clock clock;
 	Time elapsed;
 	//========================INIT
-	NodeTree root;
-	root.canhCay.x = 450; root.canhCay.y = 600;
-	float dentaTime = 0;
-	int soNhanh = 0;
+	//NodeTree root;
+	////root.canhCay.texTree.loadFromFile(TEXTURE_TREE);
+	//root.canhCay.x = 450; root.canhCay.y = 600;
+	//float dentaTime = 0;
+	//int soNhanh = 0;
+	NodeTree *p = new NodeTree();
+	p->canhCay.x = 200; p->canhCay.y = 200;
 
+	CanhCay a;
+	a.x = 100; a.y = 100;
+	Texture texTree;
+	Sprite sprTree;
+	texTree.loadFromFile(TEXTURE_TREE);
+	sprTree.setTexture(texTree);
+	sprTree.setPosition(300, 300);
 	//========================LOOP
 	while (window.isOpen())
 	{
@@ -127,36 +150,53 @@ int main()
 			if (event.type == Event::Closed)
 				window.close();
 		}
+		//srand(0);
+	//	srand( (unsigned)time( NULL ) );
+		//int a = 0, b = 50;
+		//int ran = rand() % (b - a + 1) + a;
+
+
+		/*struct timespec ts;
+		clock_gettime(CLOCK_MONOTONIC, &ts);
+		srand((time_t)ts.tv_nsec);*/
+		int ran = rand();
+		ran /= 1000;
+		cout << "ran : " << ran<< endl;
+		
+		
+		
 		elapsed = clock.getElapsedTime();
 		// A microsecond is 1/1,000,000th of a second, 1000 microseconds == 1 millisecond
 		float dt = clock.getElapsedTime().asMicroseconds() * 1.0f / 1000000;
-		std::cout << "dt: " << dt << std::endl; 
-		std::cout << "denta time " << dentaTime << std::endl;
+		/*std::cout << "dt: " << dt << std::endl; 
+		std::cout << "denta time " << dentaTime << std::endl;*/
 		// Start the countdown over.  Think of laps on a stop watch.
 		clock.restart();
 		// ================================ Update ================================ 
 		//sau một thời gian nhất định thì cây sẽ thêm 1 nhánh, cây khi thêm đủ 3 nhánh thì sẽ tách thành 2 nhánh
-		dentaTime += dt + 0.05;
-		if (dentaTime >= 2)
-		{
-			if (soNhanh == 3)
-			{
-				ReNhanh(&root);//them trai , phai
-				soNhanh = 0;
-			}
-			else
-			{
-				ThemNhanh(&root);//chi them trai
-				soNhanh++;
-				dentaTime = 0;
-			}
-		}
-		
+		//dentaTime += dt + 0.05;
+		//if (dentaTime >= 2)
+		//{
+		//	if (soNhanh == 3)
+		//	{
+		//		ReNhanh(&root);//them trai , phai
+		//		soNhanh = 0;
+		//	}
+		//	else
+		//	{
+		//		ThemNhanh(&root);//chi them trai
+		//		soNhanh++;
+		//		dentaTime = 0;
+		//	}
+		//}
+		//
 		// ================================ Draw ================================ 
 		window.clear();
 		//render
-		
-		render(&root, window);
+		/*window.draw(sprTree);
+		window.draw(p->canhCay.sprTree);
+		window.draw(a.sprTree);*/
+		//render(&root, window);
 		/*sf::Vertex line[] =
 		{
 			sf::Vertex(sf::Vector2f(450,600)),
